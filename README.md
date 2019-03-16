@@ -1,17 +1,19 @@
+# High availability with Kafka cluster using Docker containers
+
 REF:
 https://codeblog.dotsandbrackets.com/highly-available-kafka-cluster-docker/
 https://www.desgehtfei.net/basic-setup-of-a-multi-node-apache-kafka-zookeeper-cluster/
 
-# Build image
+## Build image
 docker build -t kafka-oel7 .
 
-# Docker network
+## Docker network
 docker create network kafkanet
 
-# ZOOKEPER
+## ZOOKEPER
 docker run -d --net kafkanet --name zookeeper -e ZOOKEEPER_HOST=zookeeper kafka-oel7:latest ./run_start_zookeeper.sh
 
-# SERVERS
+## SERVERS
 for N in {1..3};
 do
   docker run -d --net kafkanet --name kafka$N \
@@ -20,13 +22,13 @@ do
   ./run_start_server.sh
 done
 
-# TOPIC
+## TOPIC
 docker run -t --rm --net kafkanet kafka-oel7:latest bin/kafka-topics.sh --create --zookeeper zookeeper:2181 --replication-factor 3 --partitions 3 --topic MyTopic
 
-# DESCRIBE TOPIC
+## DESCRIBE TOPIC
 docker run -t --rm --net kafkanet kafka-oel7:latest bin/kafka-topics.sh --describe --topic MyTopic  --zookeeper zookeeper:2181
 
-# CONSUMER
+## CONSUMERS
 for N in {1..3};
 do
   docker run -d --net kafkanet --name consumer$N kafka-oel7:latest \
@@ -36,13 +38,13 @@ done
 
 docker run -d --net kafkanet --name consumer4 kafka-oel7:latest bin/kafka-console-consumer.sh --bootstrap-server kafka1:9092,kafka2:9092,kafka3:9092 --topic MyTopic --from-beginning
 
-# PRODUCER
+## PRODUCERS
 for P in {1..2};
 do
   docker run -d --net kafkanet --name producer$P -e MESG=Producer$P -e KAFKA_BROKER_LIST=kafka1:9092,kafka2:9092,kafka3:9092 -e TOPIC=MyTopic kafka-oel7:latest ./start_producer.sh
 done
 
-# Clean up
+## Clean up
 for N in {1..2};
   do docker stop producer$N && docker rm producer$N 
 done
