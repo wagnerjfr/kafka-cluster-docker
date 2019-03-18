@@ -31,11 +31,13 @@ done
 ```
 ### 6. Creat a Kafka topic
 ```
-docker run -t --rm --net kafkanet kafka-oel7:latest bin/kafka-topics.sh --create --zookeeper zookeeper:2181 --replication-factor 3 --partitions 3 --topic MyTopic
+docker run -t --rm --net kafkanet kafka-oel7:latest bin/kafka-topics.sh \
+  --create --zookeeper zookeeper:2181 --replication-factor 3 --partitions 3 --topic MyTopic
 ```
 To describe the topic, run:
 ```
-docker run -t --rm --net kafkanet kafka-oel7:latest bin/kafka-topics.sh --describe --topic MyTopic  --zookeeper zookeeper:2181
+docker run -t --rm --net kafkanet kafka-oel7:latest bin/kafka-topics.sh \
+  --describe --topic MyTopic  --zookeeper zookeeper:2181
 ```
 ### 7. Starting four Kafka Consumers
 #### Consumer group with 3 containers
@@ -49,13 +51,18 @@ done
 ```
 #### Unique consumer
 ```
-docker run -d --net kafkanet --name consumer4 kafka-oel7:latest bin/kafka-console-consumer.sh --bootstrap-server kafka1:9092,kafka2:9092,kafka3:9092 --topic MyTopic --from-beginning
+docker run -d --net kafkanet --name consumer4 \
+  kafka-oel7:latest bin/kafka-console-consumer.sh \
+  --bootstrap-server kafka1:9092,kafka2:9092,kafka3:9092 \
+  --topic MyTopic --from-beginning
 ```
 ### 7. Starting two Kafka producers
 ```
 for P in {1..2};
 do
-  docker run -d --net kafkanet --name producer$P -e MESG=Producer$P -e KAFKA_BROKER_LIST=kafka1:9092,kafka2:9092,kafka3:9092 -e TOPIC=MyTopic kafka-oel7:latest ./start_producer.sh
+  docker run -d --net kafkanet --name producer$P \
+  -e MESG=Producer$P -e KAFKA_BROKER_LIST=kafka1:9092,kafka2:9092,kafka3:9092 \
+  -e TOPIC=MyTopic kafka-oel7:latest ./start_producer.sh
 done
 ```
 ### 8. Some results
