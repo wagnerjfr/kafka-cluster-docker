@@ -17,7 +17,8 @@ docker create network kafkanet
 ```
 ### 4. Create the Zookeeper container
 ```
-docker run -d --net kafkanet --name zookeeper -e ZOOKEEPER_HOST=zookeeper kafka-oel7:latest ./run_start_zookeeper.sh
+docker run -d --net kafkanet --name zookeeper -e ZOOKEEPER_HOST=zookeeper \
+  kafka-oel7:latest ./run_start_zookeeper.sh
 ```
 ### 5. Start the Kafka Servers containers
 ```
