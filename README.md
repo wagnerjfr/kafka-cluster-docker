@@ -3,13 +3,13 @@
 ## Steps
 ### 1. Clone the project and cd into the folder
 ```
-$ git clone https://github.com/wagnerjfr/kafka-cluster.git
+git clone https://github.com/wagnerjfr/kafka-cluster.git
 
-$ cd kafka-cluster-docker-compose
+cd kafka-cluster-docker-compose
 ```
 ### 2. Build the image
 ```
-$ docker build -t kafka-oel7 .
+docker build -t kafka-oel7 .
 ```
 ### 3. Create the Docker network
 ```
