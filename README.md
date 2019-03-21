@@ -21,6 +21,7 @@ docker run -d --net kafkanet --name zookeeper -e ZOOKEEPER_HOST=zookeeper \
   kafka-oel7:latest ./run_start_zookeeper.sh
 ```
 ### 5. Start the Kafka Servers containers
+Run the commnd below to start the containers:
 ```
 for N in {1..3};
 do
@@ -29,6 +30,10 @@ do
   kafka-oel7:latest \
   ./run_start_server.sh
 done
+```
+Check whether the containers are up and running:
+```
+docker ps -a
 ```
 ### 6. Creat a Kafka topic
 ```
