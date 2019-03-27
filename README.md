@@ -65,6 +65,7 @@ Taking `Partition: 0` as example, we have two more information:
 
 ### 7. Starting four Kafka Consumers
 #### Consumer group with 3 containers
+Each consumer will consume from one of the 3 topic partitions.
 ```
 for N in {1..3};
 do
@@ -74,6 +75,7 @@ do
 done
 ```
 #### Unique consumer
+This consumer will from all the 3 topic partitions.
 ```
 docker run -d --net kafkanet --name consumer4 \
   kafka-oel7:latest bin/kafka-console-consumer.sh \
