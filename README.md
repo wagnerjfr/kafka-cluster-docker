@@ -97,9 +97,10 @@ Let's check how consumer will receice the messages.
 
 #### Consumer 1
 `$ docker logs consumer1`
+
 As expected, consumer1 consumes just some of the messages.
 Total: 15 messages; Producer1: 9 messages; Producer2: 6 messages.
-```
+```console
 Producer1 1
 Producer1 2
 Producer2 2
@@ -118,8 +119,9 @@ Producer1 19
 ```
 #### Consumer 2
 `$ docker logs consumer2`
+
 Total: 9 messages; Producer1: 5 messages; Producer2: 4 messages.
-```
+```console
 Producer1 4
 Producer2 4
 Producer1 5
@@ -132,8 +134,9 @@ Producer2 20
 ```
 #### Consumer 3
 `$ docker logs consumer3`
+
 Total: 16 messages; Producer1: 6 messages; Producer2: 10 messages.
-```
+```console
 Producer2 1
 Producer2 3
 Producer1 6
@@ -153,8 +156,9 @@ Producer2 19
 ```
 #### Consumer 4
 `$ docker logs consumer4`
+
 Total: 40 messages; Producer1: 20 messages; Producer2: 20 messages.
-```
+```console
 Producer1 1
 Producer2 1
 Producer1 2
