@@ -83,6 +83,7 @@ docker run -d --net kafkanet --name consumer4 \
   --topic MyTopic --from-beginning
 ```
 ### 7. Starting two Kafka producers
+Two kafka producers wil send 20 messages each.
 ```
 for P in {1..2};
 do
@@ -92,8 +93,109 @@ do
 done
 ```
 ### 8. Some results
-Coming soon
+Let's check how consumer will receice the messages.
 
+#### Consumer 1
+`$ docker logs consumer1`
+As expected, consumer1 consumes just some of the messages.
+Total: 15 messages; Producer1: 9 messages; Producer2: 6 messages.
+```
+Producer1 1
+Producer1 2
+Producer2 2
+Producer1 3
+Producer2 5
+Producer1 9
+Producer2 10
+Producer1 11
+Producer1 12
+Producer1 13
+Producer2 13
+Producer2 15
+Producer2 17
+Producer1 18
+Producer1 19
+```
+#### Consumer 2
+`$ docker logs consumer2`
+Total: 9 messages; Producer1: 5 messages; Producer2: 4 messages.
+```
+Producer1 4
+Producer2 4
+Producer1 5
+Producer2 9
+Producer1 15
+Producer1 16
+Producer2 18
+Producer1 20
+Producer2 20
+```
+#### Consumer 3
+`$ docker logs consumer3`
+Total: 16 messages; Producer1: 6 messages; Producer2: 10 messages.
+```
+Producer2 1
+Producer2 3
+Producer1 6
+Producer2 6
+Producer1 7
+Producer2 7
+Producer1 8
+Producer2 8
+Producer1 10
+Producer2 11
+Producer2 12
+Producer1 14
+Producer2 14
+Producer2 16
+Producer1 17
+Producer2 19
+```
+#### Consumer 4
+`$ docker logs consumer4`
+Total: 40 messages; Producer1: 20 messages; Producer2: 20 messages.
+```
+Producer1 1
+Producer2 1
+Producer1 2
+Producer2 2
+Producer1 3
+Producer2 3
+Producer1 4
+Producer2 4
+Producer1 5
+Producer2 5
+Producer1 6
+Producer2 6
+Producer1 7
+Producer2 7
+Producer1 8
+Producer2 8
+Producer1 9
+Producer2 9
+Producer1 10
+Producer2 10
+Producer1 11
+Producer2 11
+Producer1 12
+Producer2 12
+Producer1 13
+Producer2 13
+Producer1 14
+Producer2 14
+Producer1 15
+Producer2 15
+Producer1 16
+Producer2 16
+Producer1 17
+Producer2 17
+Producer1 18
+Producer2 18
+Producer1 19
+Producer2 19
+Producer1 20
+Producer2 20
+```
 ### 9. Clean up
 ```
 for N in {1..2};
