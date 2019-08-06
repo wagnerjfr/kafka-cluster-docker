@@ -3,9 +3,9 @@
 ## Steps
 ### 1. Clone the project and cd into the folder
 ```
-git clone https://github.com/wagnerjfr/kafka-cluster.git
+https://github.com/wagnerjfr/kafka-cluster-docker.git
 
-cd kafka-cluster-docker-compose
+cd kafka-cluster-docker
 ```
 ### 2. Build the image
 ```
@@ -13,7 +13,7 @@ docker build -t kafka-oel7 .
 ```
 ### 3. Create the Docker network
 ```
-docker create network kafkanet
+docker network create kafkanet
 ```
 ### 4. Create the Zookeeper container
 ```
@@ -96,7 +96,7 @@ done
 Let's check how consumer will receice the messages.
 
 #### Consumer 1
-`$ docker logs consumer1`
+`docker logs consumer1`
 
 As expected, consumer1 consumes just some of the messages.
 Total: 15 messages; Producer1: 9 messages; Producer2: 6 messages.
