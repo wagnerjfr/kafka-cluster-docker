@@ -3,21 +3,21 @@
 ## Steps
 ### 1. Clone the project and cd into the folder
 ```
-https://github.com/wagnerjfr/kafka-cluster-docker.git
+$ git clone https://github.com/wagnerjfr/kafka-cluster-docker.git
 
-cd kafka-cluster-docker
+$ cd kafka-cluster-docker
 ```
 ### 2. Build the image
 ```
-docker build -t kafka-oel7 .
+$ docker build -t kafka-oel7 .
 ```
 ### 3. Create the Docker network
 ```
-docker network create kafkanet
+$ docker network create kafkanet
 ```
 ### 4. Create the Zookeeper container
 ```
-docker run -d --net kafkanet --name zookeeper -e ZOOKEEPER_HOST=zookeeper \
+$ docker run -d --net kafkanet --name zookeeper -e ZOOKEEPER_HOST=zookeeper \
   kafka-oel7:latest ./run_start_zookeeper.sh
 ```
 ### 5. Start the Kafka Servers containers
@@ -33,12 +33,12 @@ done
 ```
 Check whether the containers are up and running:
 ```
-docker ps -a
+$ docker ps -a
 ```
 ### 6. Creat a Kafka topic
 Let's add a topic which will have replicas at all the 3 Kafka Brokers (Servers) and with 3 partitions.
 ```
-docker run -t --rm --net kafkanet kafka-oel7:latest bin/kafka-topics.sh \
+$ docker run -t --rm --net kafkanet kafka-oel7:latest bin/kafka-topics.sh \
   --create --zookeeper zookeeper:2181 --replication-factor 3 --partitions 3 --topic MyTopic
 ```
 Expected output:
@@ -47,7 +47,7 @@ Created topic "MyTopic".
 ```
 By running the command below, we can see how the partitions are distributed among the Kafka Brokers and who is the leader of each one:
 ```
-docker run -t --rm --net kafkanet kafka-oel7:latest bin/kafka-topics.sh \
+$ docker run -t --rm --net kafkanet kafka-oel7:latest bin/kafka-topics.sh \
   --describe --topic MyTopic  --zookeeper zookeeper:2181
 ```
 A similar output should appear:
@@ -77,7 +77,7 @@ done
 #### Unique consumer
 This consumer will from all the 3 topic partitions.
 ```
-docker run -d --net kafkanet --name consumer4 \
+$ docker run -d --net kafkanet --name consumer4 \
   kafka-oel7:latest bin/kafka-console-consumer.sh \
   --bootstrap-server kafka1:9092,kafka2:9092,kafka3:9092 \
   --topic MyTopic --from-beginning
@@ -96,7 +96,7 @@ done
 Let's check how consumer will receice the messages.
 
 #### Consumer 1
-`docker logs consumer1`
+`$ docker logs consumer1`
 
 As expected, consumer1 consumes just some of the messages.
 Total: 15 messages; Producer1: 9 messages; Producer2: 6 messages.
