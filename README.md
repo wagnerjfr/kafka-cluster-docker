@@ -57,11 +57,11 @@ Topic:MyTopic	PartitionCount:3	ReplicationFactor:3	Configs:
 	Topic: MyTopic	Partition: 1	Leader: 2	Replicas: 2,3,1	Isr: 2,3,1
 	Topic: MyTopic	Partition: 2	Leader: 3	Replicas: 3,1,2	Isr: 3,1,2
 ```
-From the output, we see that `Partition: 0` has kafka1 as its leader. `Partition: 1` and `Partition: 2` have kafka2 and kafka3 as their leaders (respectively). The leader handles all read and write requests for the partition while the replicas (followers) passively replicate the leader.
+From the output, we see that `Partition: 0` has ***kafka1*** as its leader. `Partition: 1` and `Partition: 2` have ***kafka2*** and ***kafka3*** as their leaders (respectively). The leader handles all read and write requests for the partition while the replicas (followers) passively replicate the leader.
 
 Taking `Partition: 0` as example, we have two more information:
-1. `Replicas: 1,2,3`: This shows that `Partition: 0` has replicas at kafka1, kafka2 and kafka3, in our example.
-2. `Isr: 1,2,3`: (Isr: in-sync replica) This shows that kafka1, kafka2 and kafka3 are synchronized with the partition's leader.
+1. `Replicas: 1,2,3`: This shows that `Partition: 0` has replicas at *kafka1*, *kafka2* and *kafka3*, in our example.
+2. `Isr: 1,2,3`: (Isr: in-sync replica) This shows that *kafka1*, *kafka2* and *kafka3* are synchronized with the partition's leader.
 
 ### 7. Starting four Kafka Consumers
 #### Consumer group with 3 containers
