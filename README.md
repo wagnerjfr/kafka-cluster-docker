@@ -82,7 +82,7 @@ $ docker run -d --net kafkanet --name consumer4 \
   --bootstrap-server kafka1:9092,kafka2:9092,kafka3:9092 \
   --topic MyTopic --from-beginning
 ```
-### 7. Starting two Kafka producers
+### 8. Starting two Kafka producers
 Two kafka producers wil send 20 messages each.
 ```
 for P in {1..2};
@@ -92,7 +92,7 @@ do
   -e TOPIC=MyTopic kafka-oel7:latest ./start_producer.sh
 done
 ```
-### 8. Some results
+### 9. Some results
 Let's check how consumer will receive the messages.
 
 #### Consumer 1
@@ -211,7 +211,7 @@ Producer2 19
 Producer1 20
 Producer2 20
 ```
-### 9. Clean up
+### 10. Clean up
 ```
 for N in {1..2};
   do docker stop producer$N && docker rm producer$N 
