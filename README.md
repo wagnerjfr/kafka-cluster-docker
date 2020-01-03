@@ -93,7 +93,7 @@ do
 done
 ```
 ### 9. Some results
-Let's check how consumer will receive the messages.
+Let's check how consumers will receive the messages.
 
 #### Consumer 1
 `$ docker logs consumer1`
