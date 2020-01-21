@@ -64,7 +64,7 @@ Taking `Partition: 0` as example, we have two more information:
 2. `Isr: 1,2,3`: (Isr: in-sync replica) This shows that *kafka1*, *kafka2* and *kafka3* are synchronized with the partition's leader.
 
 ### 7. Starting four Kafka Consumers
-#### Consumer group with 3 containers
+#### Consumer group with three containers
 Each consumer will consume from one of the 3 topic partitions.
 ```
 for N in {1..3};
