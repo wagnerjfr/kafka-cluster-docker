@@ -211,14 +211,21 @@ Producer2 19
 Producer1 20
 Producer2 20
 ```
-### 10. Clean up
+### 10. Cleanning up
+To stop the producers:
 ```
 for N in {1..2};
   do docker stop producer$N && docker rm producer$N 
 done
+```
+To stop the consumers:
+```
 for N in {1..4};
   do docker stop consumer$N && docker rm consumer$N
 done
+```
+To stop the Kafka cluster and Zookeeper:
+```
 for N in {1..3};
   do docker stop kafka$N && docker rm kafka$N
 done
