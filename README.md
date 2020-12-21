@@ -211,7 +211,7 @@ Producer2 19
 Producer1 20
 Producer2 20
 ```
-### 10. Cleanning up
+### 10. Cleanning up: stopping the containers
 To stop the producers:
 ```
 for N in {1..2};
