@@ -35,7 +35,7 @@ Check whether the containers are up and running:
 ```
 $ docker ps -a
 ```
-### 6. Creat a Kafka topic
+### 6. Create a Kafka topic
 Let's add a topic which will have replicas at all the 3 Kafka Brokers (Servers) and with 3 partitions.
 ```
 $ docker run -t --rm --net kafkanet kafka-oel7:latest bin/kafka-topics.sh \
